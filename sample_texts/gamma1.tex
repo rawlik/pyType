@@ -1,0 +1,233 @@
+\documentclass[10pt, twocolumn]{article}
+
+\usepackage{polski}
+%\usepackage[T1]{fontenc}
+%\usepackage[polish]{babel}
+\usepackage[latin2]{inputenc}
+\usepackage{indentfirst}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{latexsym}
+\usepackage{array}
+\usepackage[top=2cm,left=2cm,right=2cm,,bottom=3cm,nohead]{geometry}
+%\usepackage{nopageno}
+%\pagestyle{empty}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{rotating}
+\renewcommand{\abstractname}{Abstrakt}
+
+\usepackage[sc, center]{titlesec}
+
+\input{epsfx}
+
+\title{\textsc{II Pracownia Fizyczna: \textbf{$\mathbf{\gamma}$1}\\Pomiar i analiza widm promieniowania gamma za pomocą spektrometru scyntylacyjnego. Wyznaczenie współczynnika absorbcji promieniowania gamma w metalach.}}
+\author{Michał Rawlik\\
+\small Uniwersytet Jagielloński\\
+\small Wydział Fizyki, Astronomii i Informatyki Stosowanej}
+
+\begin{document}
+
+\twocolumn[
+\begin{@twocolumnfalse}
+  \maketitle
+  \begin{abstract}
+\noindent W ramach ćwiczenia zarejestrowano widma $^{133}\mathrm{Ba}$, $^{60}\mathrm{Co}$, $^{137}\mathrm{Cs}$ oraz $^{22}\mathrm{Na}$. Przeprowadzona kalibracja pozwoliła potwierdzić istnienie krawędzi Comptonowskich w miejscach przewidzianych przez teorię dla wszystkich pierwiastków poza barem. W drugiej części ćwiczenia zmierzono masowe współczynniki absorpcji dla ołowiu i aluminium otrzymując odpowiednio 0.09252(64) i 0.06950(27) cm$^2\,$g$^{-1}$; wyniki zgadzają się z wartościami podanymi w instrukcji~\cite{prac}.
+  \end{abstract}
+  \hspace{5cm}
+\end{@twocolumnfalse}
+]
+
+\section*{Wstęp teoretyczny}
+
+\subsection*{Emisja promieniowania gamma}
+W wyniku rozpadu jądra atomowego nowo powstałe jądro może znaleźć się w stanie wzbudzonym po czym zdeekscytować emitując przy tym energie w postaci kwantu gamma o energii równej różnicy poziomów. Dodatkowo jeśli mamy do czynienia z rozpadem $\beta^+$ (np. w przypadku sodu $^{22}$Na) kwanty gamma emitowane są w wyniku anihilacji powstałego pozytonu z elektronem. Wtedy emitowane są fotony o łącznej energii równej energii promieniowania $\beta^+$ plus masa spoczynkowa elektronu (razy prędkość światła do kwadratu). Schematy rozpadu badanych izotopów (poza $^{133}\mathbf{Ba}$) przedstawiono na rys. \ref{schematy}.
+\begin{figure}
+  \center{\includegraphics[width=8cm]{schematy.pdf}}
+  \caption{\em Schematy rozpadów badanych izotopów.}
+  \label{schematy}
+\end{figure}
+
+\subsection*{Detekcja promieniowania gamma}
+Do detekcji promieniowania gamma używa się \textbf{kryształów scyntylacyjnych}. Są one materiałami które emitują światło w zakresie widzialnym (błyski) pod wpływem promieniowania jonizującego przy czym natężenie błysku jest proporcjonalne do energii zdeponowanej w krysztale. Istotne jest, że energia kwantów gamma \textbf{nie jest mierzona bezpośrednio} -- bezpośrednio mierzona jest energia elektronów.
+
+Kwanty gamma oddziałują z materią na trzy główne sposoby:
+\begin{description}
+   \item[efekt fotoelektryczny] który polega na przekazaniu całej energii fotonu związanemu elektronowi i tym samym uwolnienie go z pola jądra. Tym samym cała energia kwantu gamma jest przekazywana elektronowi. Proces ten odpowiada za powstawanie w mierzonym widmie \textbf{fotopiku} czyli zwiększonej ilości zdarzeń w kanałach odpowiadających rzeczywistej energii promieniowania
+   \item[efekt Comptona] czyli przekazanie elektronowi przez foton jedynie części swojej energii. Po zderzeniu foton zmienia kierunek lotu i długość fali. Ponieważ elektronowi jest przekazywana tyko część energii to zjawisko odpowiada za tzw. ciągłe \textbf{tło komptonowskie} wyraźnie widoczne na widmie i kończące się przy energii odpowiadającej rozproszeniu fotonu do tyłu, tj. $E_\gamma - 256$keV \cite{agh} (co wynika z kinematyki reakcji po podstawieniu masy elektronu). Jednocześnie obserwowane będą \textbf{fotony} które rozproszyły się po comptonowsku do tyłu (w próbce lub detektorze) i wywołały efekt fotoelektryczny -- tworzą one tak zwany \textbf{pik rozproszenia wstecznego}.
+   \item[tworzenie par] -- jeśli energia fotonu przekracza dwie masy spoczynkowe elektronu to w polu jądra może się wytworzyć para elektron-pozyton, które dalej są rejestrowane, przy czym jeden z nich może z ,,uciec'' detektora.
+\end{description}
+
+Błyski scyntylatora rejestrowane są przez fotopowielacz. Warto również wspomnieć, że wydajność takiego układu detekcyjnego zmienia się wraz z energią -- im niższa energia tym lepiej rejestrowane są zdarzenia.
+
+Układ detekcyjny posiada pewną \textbf{energetyczną zdolność rozdzielczą}. Objawia się to tym, że gdy do detektora wpada idealnie monochromatyczne promieniowanie obserwowane widmo ma kształt zbliżony do rozkładu Gaussa. Miarą zdolności rozdzielczej może być \textbf{bezwzględna energetyczna zdolność rozdzielcza} równa szerokości połówkowej widma jakie zwraca detektor dla monochromatycznego promieniowania. \textbf{Względna energetyczna zdolność rozdzielcza} to stosunek szerokości połówkowej do położenia maksimum.
+
+\subsection*{Absorpcja promieniowania gamma}
+Ilość fotonów zaabsorbowanych na jednostkę drogi jest proporcjonalna do ich strumienia: $\mathrm{d}I = \sigma I \mathrm{d}x$ \cite{agh}. Rozwiązaniem tego równania jest prawo eksponencjalnego zaniku:
+\begin{equation}
+  \label{eq:absorbcja}
+  I(x) = I_0 e^{-\sigma x}
+\end{equation}
+gdzie $\sigma$ to \textbf{liniowy współczynnik osłabienia}. Podzielony przez gęstość materiału daje \textbf{masowy współczynnik osłabienia}.
+
+\subsection*{Prawa statystyczne}
+Ilość rozpadów w próbce promieniotwórczej w określonym przedziale czasowym opisywana jest (przy założeniu, że czas pomiaru jest dużo krótszy od czasu połowicznego rozpadu) \textbf{rozkładem Poissona} \cite{agh}. Rozkład ten ma tylko jeden parametr: średnią liczbę zdarzeń $\bar{N}$. Odchylenie standardowe tego rozkładu wynosi $\sqrt{\bar{N}}$, przy czym dla pojedynczego pomiaru można je szacować przez $\sqrt{N}$. Dla dużej liczby zliczeń rozkład Poissona dąży do rozkładu Gaussa.
+
+\section*{Opis pomiarów}
+\subsubsection*{Dzień 1 -- 2 III 2012}
+Pierwszego dnia poza kolokwium i zapoznaniem się z układem pomiarowym zmierzono widma czterech pierwiastków: $^{133}\mathbf{Ba}$, $^{60}\mathbf{Co}$,  $^{137}\mathbf{Cs}$ oraz $^{2}\mathbf{Na}$.
+
+Tego dnia przeprowadzono także pomiary absorpcji promieniowania gamma w ołowiu. W tym celu pomiędzy próbką ($^{137}\mathbf{Cs}$) a detektorem umieszczono ołowiane płytki. Przeprowadzono serię 10 pomiarów po 720 sekund po każdym zdejmując jedną płytkę. Na koniec zmierzono promieniowanie tła (również 720 sekund).
+
+\subsubsection*{Dzień 2 -- 7 III 2012}
+Cały drugi dzień poświęcony został na pomiar absorpcji promieniowania gamma w aluminium. Pomiar odbywał się na takiej samej zasadzie jak dla ołowiu, z tą różnicą że czasami zdejmowano więcej płytek.
+
+
+
+\section*{Opracowanie pomiarów}
+
+\subsection*{Kalibracja}
+Do widm $^{133}\mathbf{Ba}$ (rys. \ref{fit_ba}), $^{60}\mathbf{Co}$ (rys. \ref{fit_co}) oraz $^{137}\mathbf{Cs}$ (rys. \ref{fit_cs}) dopasowano przy pomocy programu \texttt{fityk} \cite{fityk} liniowe tło oraz funkcje Gaussa w miejscach pików.
+
+Korzystając z tablicowych \cite{NuclearDataCenter} energii promieniowania gamma poszczególnych pierwiastków przeprowadzono kalibrację przyporządkowując każdemu kanałowi energię. Widma po skalibrowaniu przedstawiono na rys. \ref{widma}, a krzywą kalibracyjną na rys. \ref{kalibracja}.
+
+\begin{figure}
+  \center{\includegraphics[width=8.5cm]{widma.pdf}}
+  \caption{\em Zmierzone widma promieniowania gamma emitowanego przez badanie pierwiastki.}
+  \label{widma}
+\end{figure}
+
+\subsection*{Analiza widm}
+Na rysunkach \ref{ba133}-\ref{na22} przedstawiono poszczególne widma wraz z opisami. Pionowymi liniami oznaczono tam tablicowe energie promieniowania, jak również obliczone krawędzie Comptonowskie. Pików jakie powinny zestawiać elektrony po rozpraszaniu wstecznym nie udało się zaobserwować. Zgodnie z teorią powinny się znajdować w każdym widmie (o ile energia fotonów na to pozwala) przy energii 256$\,$keV. Na rys. \ref{widma} widać, że przy tej energii nie występują żadne widoczne piki na widmach.
+
+\subsection*{Zdolność rozdzielcza}
+Korzystając z widma $^{137}\mathbf{Cs}$ (rys. \ref{cs137}) i dopasowanej krzywej (rys. \ref{fit_cs}) wyznaczono energetyczną zdolność rozdzielczą układu detekcyjnego. Otrzymano:
+\begin{equation*}
+  \begin{array}{ll}
+    \textbf{bezwzględna} & \mathbf{85\,keV} \\
+    \textbf{względna} & \mathbf{12.5 \%}
+  \end{array}
+\end{equation*}
+
+
+\subsection*{Absorpcja}
+Absorpcję badano umieszczając między źródłem ($^{137}\mathbf{Cs}$) a detektorem szereg płytek ołowianych oraz aluminiowych. Każdy z pomiarów trwał 720 sekund. Wszystkie zmierzone widma przedstawiono na rys. \ref{wszystkie_al} i \ref{wszystkie_pb}.
+
+Od wszystkich widm odjęto tło a następnie do fotopiku na każdym z nich dopasowano krzywą Gaussa i obliczono pole pod nią ($N_{max}2 \pi \sigma$). Do zależności logarytmu obliczonego pola od grubości warstwy metalu dopasowano prostą (rys. \ref{ab_pb} i \ref{ab_al}). Otrzymane liniowe współczynniki osłabienia:
+\begin{equation*}
+  \begin{array}{ll}
+    \text{ołów} & 0.1052(73)\,\text{mm}^{-1} \\
+    \text{aluminium} & 0.018765(73)\,\text{mm}^{-1}
+  \end{array}
+\end{equation*}
+Uwzględnienio gęstości metali ($\rho_{Pb} = 11.37\ \mathrm{g\,cm}^{-3}$, $\rho_{Al} = 2.7\ \mathrm{g\,cm}^{-3}$ pozwala obliczyć masowe współczynniki osłabienia:
+\begin{equation*}
+  \begin{array}{ll}
+    \textbf{ołów} & \mathbf{0.09252(64)\,cm^2\,g^{-1}} \\
+    \textbf{aluminium} & \mathbf{0.06950(27)\,cm^2\,g^{-1}}
+  \end{array}
+\end{equation*}
+
+Tablicowe wartości \cite{prac} wynoszą odpowiednio $\approx 0.09$ i $\approx 0.08$, co dobrze zgadza się z uzyskanymi wynikami.
+
+\begin{figure}
+  \center{\includegraphics[width=8.5cm]{olow.pdf}}
+  \caption{\em Ilość zliczeń w fotopiku w zależności od grubości warstwy ołowiu pomiędzy źródłem a detektorem.}
+  \label{ab_pb}
+\end{figure}
+
+\begin{figure}
+  \center{\includegraphics[width=8.5cm]{aluminium.pdf}}
+  \caption{\em Ilość zliczeń w fotopiku w zależności od grubości warstwy aluminium pomiędzy źródłem a detektorem.}
+  \label{ab_al}
+\end{figure}
+
+
+\section*{Podsumowanie}
+Udało się zebrać widma czterech pierwiastków i skalibrować układ doświadczalny. Jak widać na wykresach widm kalibracja niestety nie jest zbyt dokładna (kilka pików nie ma maksimów w energiach określonych z teorii). Na widmach udało się zidentyfikować krawędzie comptonowskie, aczkolwiek już piki rozproszenia wstecznego były niewidoczne. Dodatkowo wyznaczono rozdzielczość energetyczną układu doświadczalnego.
+
+Z kolei część ćwiczenia polegającą na wyznaczeniu współczynników absorpcji można uznać za w pełni udaną. Zostały one wyznaczone z dużą dokładnością (rzędu promili) i zgadzają się z danymi zamieszczonymi w \cite{prac}.
+
+
+\begin{thebibliography}{00}
+\bibitem{agh}
+B. Dziunikowski, S. J. Kalita \emph{Ćwiczenia laboratoryjne z jądrowych metod pomiarowych}
+
+\bibitem{fityk}
+program \emph{fityk} \verb|http://fityk.nieto.pl/|
+
+\bibitem{NuclearDataCenter}
+\emph{Nuclear Data Center of Japan Atomic Energy Agency} \verb|http://wwwndc.jaea.go.jp/|
+
+\bibitem{wiki}
+Wikimedia Commons \\ \verb|http://commons.wikimedia.org/|
+
+\bibitem{prac}
+\emph{Instrukcja do ćwiczenia $\gamma1$} \\\verb|http://users.uj.edu.pl/~pracfiz2/PDF/G1.pdf|
+
+\bibitem{wa}
+Wolfram Alpha \\ \verb|http://www.wolframalpha.com/|
+\end{thebibliography}
+
+%OBRAZKI
+
+\begin{figure}
+  \center{\includegraphics[width=8.5cm]{fit_ba133.pdf}}
+  \caption{\em Dopasowanie krzywych Gaussa i tła do widma $^{133}\mathbf{Ba}$. Środki pików (i ich wysokości), od lewej: 76 (203), 102 (1249), 189 (944), 226 (2051). }
+  \label{fit_ba}
+\end{figure}
+\begin{figure}
+  \center{\includegraphics[width=8.5cm]{fit_co60.pdf}}
+  \caption{\em Dopasowanie krzywych Gaussa i tła do widma $^{60}\mathbf{Co}$. Środki pików (i ich wysokości), od lewej: 681 (5487), 768 (3588). }
+  \label{fit_co}
+\end{figure}
+\begin{figure}
+  \center{\includegraphics[width=8.5cm]{fit_cs137.pdf}}
+  \caption{\em Dopasowanie krzywej Gaussa i tła do widma $^{137}\mathbf{Cs}$. Środek piku znajduje się w położeniu 407, a jego wysokość to 3537.}
+  \label{fit_cs}
+\end{figure}
+
+\begin{figure}
+  \center{\includegraphics[width=8.5cm]{kalibracja.pdf}}
+  \caption{\em Krzywa kalibracyjna znaleziona na podstawie porównania położeń fotopików w zmierzonych widmach z tablicowymi \cite{NuclearDataCenter} wartościami energii promieniowania $^{133}\mathbf{Ba}$, $^{60}\mathbf{Co}$ oraz $^{137}\mathbf{Cs}$.}
+  \label{kalibracja}
+\end{figure}
+
+\begin{figure}
+  \center{\includegraphics[width=8.5cm]{ba133.pdf}}
+  \caption{\em Zmierzone widmo baru. Zaznaczono na nim położenie dwóch nakładających się na siebie fotopików. Na tym widmie niewidoczne są krawędzie comtonowskie, najprawdopodobniej ze względu na niską energię fotonów.}
+  \label{ba133}
+\end{figure}
+
+\begin{figure}
+  \center{\includegraphics[width=8.5cm]{co60.pdf}}
+  \caption{\em Zmierzone widmo kobaltu. Zaznaczono oba fotopiki pochodzące od deekscytacji jądra wraz z odpowiadającymi im krawędziami comptonowskimi. Wyraźna jest jedynie krawędź pochodząca od piku przy mniejszej energii, druga prawdopodobnie ,,ginie'' w piku.}
+  \label{co60}
+\end{figure}
+
+\begin{figure}
+  \center{\includegraphics[width=8.5cm]{cs137.pdf}}
+  \caption{\em Zmierzone widmo cezu. Zaznaczono fotopik pochodzący z deekscytacji jądra oraz odpowiadającą mu krawędź comptonowską. Na tym przykładzie wyraźna jest niedokładność kalibracji.}
+  \label{cs137}
+\end{figure}
+
+\begin{figure}
+  \center{\includegraphics[width=8.5cm]{na22.pdf}}
+  \caption{\em Zmierzone widmo sodu. Widać fotopik pochodzący z deekscytacji jądra oraz pik pochodzący z anihilacji pozytonu z rozpadu $\beta^+$. Emitowany pozyton ma energię maksymalną 545$\,$keV, anihiluje z elektronem o masie 511$\,$keV emitując dwa fotony, każdy o energii 528$\,$keV. Zaznaczone są również krawędzie comptonowskie odpowiadające obu rodzajom fotonów.}
+  \label{na22}
+\end{figure}
+
+\begin{figure}
+  \center{\includegraphics[width=8.5cm]{wszystkie_al.pdf}}
+  \caption{\em Wszystkie zmierzone widma podczas pomiarów absorpcji aluminium oraz pomiar tła.}
+  \label{wszystkie_al}
+\end{figure}
+
+\begin{figure}
+  \center{\includegraphics[width=8.5cm]{wszystkie_pb.pdf}}
+  \caption{\em Wszystkie zmierzone widma podczas pomiarów absorpcji ołowiu oraz pomiar tła.}
+  \label{wszystkie_pb}
+\end{figure}
+
+
+\end{document}
